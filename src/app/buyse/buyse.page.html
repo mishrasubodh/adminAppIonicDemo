@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>buyse</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary" *ngIf="buyseldata">
+  <ion-card class="ioncart" *ngFor="let data of buyseldata">
+    <ion-row>
+      <ion-col>
+        name
+      </ion-col>
+      <ion-col>
+        {{data.name}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        city
+      </ion-col>
+      <ion-col>
+        {{data.city}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        distcrict
+      </ion-col>
+      <ion-col>
+        {{data.distcrict}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        number
+      </ion-col>
+      <ion-col>
+        {{data.number}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="rate">
+        grain
+      </ion-col>
+      <ion-col class="ratee">
+        {{data.grain}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="grain">
+        rate
+      </ion-col>
+      <ion-col class="grainn">
+        {{data.rate}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col >
+        date
+      </ion-col>
+      <ion-col >
+        {{data.rate}}
+      </ion-col>
+    </ion-row>
+    <ion-row> 
+    <ion-col class="delbtn">
+      <ion-button color="danger">delete this grain</ion-button>
+    </ion-col></ion-row>
+
+  </ion-card>
+</ion-content>
