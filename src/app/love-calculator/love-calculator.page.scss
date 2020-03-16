@@ -12,7 +12,10 @@ ion-header {
       --font-weight: 1000;
     }
   }
-  
+  .custom{
+    background-color: red;
+    border-radius: 13px;
+  }
   ion-item{
         font-style: oblique;
       font-family: cursive;
