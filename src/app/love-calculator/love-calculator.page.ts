@@ -1,26 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as firebase from 'firebase';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-love-calculator',
   templateUrl: './love-calculator.page.html',
   styleUrls: ['./love-calculator.page.scss'],
 })
 export class LoveCalculatorPage implements OnInit {
-  userdata: [];
+  user = [];
+  ref = firebase.database().ref('lovecalcyData/');
   historydata = []
-  constructor() {
-    this.userdata = JSON.parse(localStorage.getItem('session'));
-    console.log(this.userdata, "this.userdata")
+  constructor(
+   public alertController:AlertController
+  ) {
+    this.ref.on('value', resp => {
+      this.user = [];
+      this.user =this.snapshotToArray(resp);
+   })
+   console.log(this.user,"this.user");
 
   }
 
-  deletedata(curentdata) {
-    console.log(curentdata)
-    let forremoveData = this.historydata.splice(curentdata, 1)
-    console.log('forremoveData', forremoveData)
-    localStorage.removeItem('session')
-    console.log('historydata', this.historydata)
-    this.SaveDataToLocalStorage(this.historydata)
+ 
+    async delete(key) {
+      const alert = await this.alertController.create({
+        header: 'Confirm!',
+        message: 'Are you sure want to delete this info?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: (blah) => {
+              console.log('cancel');
+            }
+          }, {
+            text: 'Okay',
+            handler: () => {
+              firebase.database().ref('lovecalcyData/'+key).remove();
+            }
+          }
+        ]
+      });
+    
+      await alert.present();
   }
   ngOnInit() {
   }
@@ -35,4 +58,16 @@ export class LoveCalculatorPage implements OnInit {
 
     }
   }
+
+  snapshotToArray = snapshot => {
+    let returnArr = [];
+
+    snapshot.forEach(childSnapshot => {
+        let item = childSnapshot.val();
+        item.key = childSnapshot.key;
+        returnArr.push(item);
+    });
+
+    return returnArr;
+};
 }

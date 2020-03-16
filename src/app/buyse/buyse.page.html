@@ -7,14 +7,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="primary" *ngIf="buyseldata">
-  <ion-card class="ioncart" *ngFor="let data of buyseldata">
+<ion-content color="primary" *ngIf="user">
+  <ion-card class="ioncart" *ngFor="let data of user">
     <ion-row>
       <ion-col>
         name
       </ion-col>
       <ion-col>
-        {{data.name}}
+        {{data.yourname}}
       </ion-col>
     </ion-row>
     <ion-row>
@@ -22,7 +22,7 @@
         city
       </ion-col>
       <ion-col>
-        {{data.city}}
+        {{data.yourcity}}
       </ion-col>
     </ion-row>
     <ion-row>
@@ -30,7 +30,7 @@
         distcrict
       </ion-col>
       <ion-col>
-        {{data.distcrict}}
+        {{data.yourdistrict}}
       </ion-col>
     </ion-row>
     <ion-row>
@@ -38,7 +38,7 @@
         number
       </ion-col>
       <ion-col>
-        {{data.number}}
+        {{data.yournumber}}
       </ion-col>
     </ion-row>
     <ion-row>
@@ -67,7 +67,7 @@
     </ion-row>
     <ion-row> 
     <ion-col class="delbtn">
-      <ion-button color="danger">delete this grain</ion-button>
+      <ion-button color="danger" (click)="delete(data.key)">delete this grain</ion-button>
     </ion-col></ion-row>
 
   </ion-card>
